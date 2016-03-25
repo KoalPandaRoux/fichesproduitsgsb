@@ -26,12 +26,12 @@ public class Modele {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection(cnxString,"root","");
+            cnx = DriverManager.getConnection(cnxString,"root","123+aze");
             System.out.println("Cela fonctionne :p");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erreur de chargement du driver");
         } catch (SQLException ex) {
-            System.out.println("Erreur de connexion à la base");
+            System.out.println("Erreur de connexion à la base"  + ex.getMessage()) ;
         }
         
     }
