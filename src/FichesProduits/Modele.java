@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class Modele {
     // chaine de connexion
-    String cnxString = "jdbc:mysql://localhost:3305/fichesproduits-gsb";
+    String cnxString = "jdbc:mysql://localhost:3306/fichesproduits-gsb";
     // Connexion
     Connection cnx;
     public Modele() {
