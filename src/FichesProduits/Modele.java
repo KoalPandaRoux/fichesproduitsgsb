@@ -67,6 +67,7 @@ public class Modele {
         } catch (SQLException ex) {
             System.out.println("problème de création de requête");
         }
+        return "yo";
     }
     
 }
