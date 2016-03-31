@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Pamorisot
+ * @author Louis Chesnais
  */
 public class Modele {
     // chaine de connexion
@@ -26,7 +26,7 @@ public class Modele {
         
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection(cnxString,"root","123+aze");
+            cnx = DriverManager.getConnection(cnxString,"root","");
             System.out.println("Cela fonctionne :p");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erreur de chargement du driver");
@@ -36,8 +36,8 @@ public class Modele {
         
     }
     
-    public void displayUsers(){
-        String SQL = "SELECT * FROM user";
+    public ResultSet getProduitByRef(String reference){
+        String SQL = "SELECT * FROM produit";
         try {
             // on crée la requête : statement en EN
             Statement requete = cnx.createStatement();
@@ -45,14 +45,16 @@ public class Modele {
             ResultSet rs = requete.executeQuery(SQL);
             // on boucle sur le tableau qu'on nous renvoie
             while (rs.next()){
-                System.out.println("/ id "+rs.getInt("id")+"/ pass "+rs.getString("pass")+"/ pseudo "+rs.getString("pseudo")+"/ nom "+rs.getString("nom"));
+                System.out.println("/ id_produit "+rs.getInt("id_produit")+"/ libelle_produit "+rs.getString("libelle_produit")+"/ description "+rs.getString("description")+"/ reference "+rs.getInt("reference"));
             }
         } catch (SQLException ex) {
             System.out.println("problème de création de requête");
         }
     }
-    public void displayUser(int id){
-        String SQL = "SELECT * FROM user WHERE ID = "+id;
+    
+    
+    public ResultSet getProduitByCat(int id){
+        String SQL = "SELECT * FROM categorie";
         try {
             // on crée la requête : statement en EN
             Statement requete = cnx.createStatement();
@@ -60,12 +62,11 @@ public class Modele {
             ResultSet rs = requete.executeQuery(SQL);
             // on boucle sur le tableau qu'on nous renvoie
             while (rs.next()){
-                System.out.println("/ id "+rs.getInt("id")+"/ pass "+rs.getString("pass")+"/ pseudo "+rs.getString("pseudo")+"/ nom "+rs.getString("nom"));
+                System.out.println("/ id_categorie "+rs.getInt("id_produit")+"/ libelle_categorie "+rs.getString("libelle_categorie"));
             }
         } catch (SQLException ex) {
             System.out.println("problème de création de requête");
         }
-        
     }
     
 }

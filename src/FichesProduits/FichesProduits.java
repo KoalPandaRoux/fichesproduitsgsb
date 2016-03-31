@@ -15,7 +15,8 @@ public class FichesProduits {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Modele modeleTest = new Modele();
+        //Modele modeleTest = new Modele();
+        new StartJFrame().show();
     }
     
 }
