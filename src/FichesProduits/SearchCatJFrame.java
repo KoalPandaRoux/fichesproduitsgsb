@@ -113,7 +113,10 @@ public class SearchCatJFrame extends CenteredJFrame {
     }//GEN-LAST:event_BtnAcceuilCatActionPerformed
 
     private void BtnOkCatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOkCatActionPerformed
-        // TODO add your handling code here:
+        Controller c = new Controller();
+        c.controlByCat(ComboBoxCategorie.getSelectedIndex()+1);
+        System.out.println(ComboBoxCategorie.getSelectedIndex()+1);
+        this.dispose();
     }//GEN-LAST:event_BtnOkCatActionPerformed
 
     /**

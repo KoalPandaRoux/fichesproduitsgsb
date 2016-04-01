@@ -17,57 +17,80 @@ import java.util.logging.Logger;
  *
  * @author Louis Chesnais
  */
+
+    /*
+    * Mise en place singleton 
+    */
 public class Modele {
-    // chaine de connexion
-    String cnxString = "jdbc:mysql://localhost:3306/fichesproduits-gsb";
+
+    // Chaine de connexion à la base de donnée mysql
+    private String cnxString = "jdbc:mysql://localhost:3306/fichesproduits-gsb";
     // Connexion
-    Connection cnx;
-    public Modele() {
-        
+    private Connection cnx;
+    // Singleton : instance unique d'une classe
+    private static Modele instance = null;
+    public static Modele getInstance(){
+        if(instance == null){
+            instance = new Modele();
+        }
+        return instance;
+    }
+    
+   
+    //configuration BDD
+    private Modele() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            cnx = DriverManager.getConnection(cnxString,"root","");
-            System.out.println("Cela fonctionne :p");
+            cnx = DriverManager.getConnection(cnxString, "root", "");
+            System.out.println("Cela fonctionne");
         } catch (ClassNotFoundException ex) {
             System.out.println("Erreur de chargement du driver");
         } catch (SQLException ex) {
-            System.out.println("Erreur de connexion à la base"  + ex.getMessage()) ;
+            System.out.println("Erreur de connexion à la base" + ex.getMessage());
         }
-        
+
     }
-    
-    public ResultSet getProduitByRef(String reference){
-        String SQL = "SELECT * FROM produit";
+
+    /**
+     * Retourne un resultset contenant le produit trouvé par ref
+     *
+     * @param reference
+     * @return ResultSet
+     */
+    public ResultSet getProduitByRef(String reference) {
+        String SQL = "SELECT * FROM produit WHERE reference = '" + reference + "'";
+        ResultSet rs;
         try {
             // on crée la requête : statement en EN
             Statement requete = cnx.createStatement();
             //On envoie la requête et on récupère ce qu'elle renvoie
-            ResultSet rs = requete.executeQuery(SQL);
-            // on boucle sur le tableau qu'on nous renvoie
-            while (rs.next()){
-                System.out.println("/ id_produit "+rs.getInt("id_produit")+"/ libelle_produit "+rs.getString("libelle_produit")+"/ description "+rs.getString("description")+"/ reference "+rs.getInt("reference"));
-            }
+            rs = requete.executeQuery(SQL);
         } catch (SQLException ex) {
-            System.out.println("problème de création de requête");
+            rs = null;
         }
+        return rs;
     }
     
-    
-    public ResultSet getProduitByCat(int id){
-        String SQL = "SELECT * FROM categorie";
-        try {
+    /**
+     * Retourne un resultset contenant le produit trouvé par categorie
+     * 
+     * @param id
+     * @return  ResultSet
+     */
+      public ResultSet getProduitByCat(int id){
+        String SQL = "SELECT * FROM produit WHERE id_categorie =" + id;
+        ResultSet rs;
+          try {
             // on crée la requête : statement en EN
             Statement requete = cnx.createStatement();
             //On envoie la requête et on récupère ce qu'elle renvoie
-            ResultSet rs = requete.executeQuery(SQL);
-            // on boucle sur le tableau qu'on nous renvoie
-            while (rs.next()){
-                System.out.println("/ id_categorie "+rs.getInt("id_produit")+"/ libelle_categorie "+rs.getString("libelle_categorie"));
-            }
-        } catch (SQLException ex) {
-            System.out.println("problème de création de requête");
+            rs = requete.executeQuery(SQL);
+          } catch (SQLException ex) {
+              rs = null;
+          }
+          return rs;
         }
-        return "yo";
-    }
-    
 }
+    
+    
+

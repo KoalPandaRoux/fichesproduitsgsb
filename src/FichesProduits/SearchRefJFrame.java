@@ -32,13 +32,13 @@ public class SearchRefJFrame extends CenteredJFrame {
         TextRechercheRef = new javax.swing.JTextField();
         BtnOkRechercheRef = new javax.swing.JButton();
         BtnAcceuil = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         TitreRechercheRef.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         TitreRechercheRef.setText("Rechercher un produit par sa référence :");
 
-        TextRechercheRef.setText("Recherche...");
         TextRechercheRef.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TextRechercheRefActionPerformed(evt);
@@ -59,6 +59,9 @@ public class SearchRefJFrame extends CenteredJFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("Recherche");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,17 +69,20 @@ public class SearchRefJFrame extends CenteredJFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(BtnAcceuil))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(TitreRechercheRef)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(TextRechercheRef, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BtnOkRechercheRef, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TitreRechercheRef)))
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnOkRechercheRef, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BtnAcceuil)))
-                .addContainerGap(137, Short.MAX_VALUE))
+                        .addGap(135, 135, 135)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,22 +91,26 @@ public class SearchRefJFrame extends CenteredJFrame {
                 .addComponent(TitreRechercheRef)
                 .addGap(8, 8, 8)
                 .addComponent(BtnAcceuil, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addGap(52, 52, 52)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TextRechercheRef, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnOkRechercheRef, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(209, 209, 209))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TextRechercheRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextRechercheRefActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_TextRechercheRefActionPerformed
 
     private void BtnOkRechercheRefActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnOkRechercheRefActionPerformed
-        // TODO add your handling code here:
+        Controller c = new Controller();
+        c.controlByRef(TextRechercheRef.getText());
+        this.dispose();
     }//GEN-LAST:event_BtnOkRechercheRefActionPerformed
 
     private void BtnAcceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAcceuilActionPerformed
@@ -149,5 +159,6 @@ public class SearchRefJFrame extends CenteredJFrame {
     private javax.swing.JButton BtnOkRechercheRef;
     private javax.swing.JTextField TextRechercheRef;
     private javax.swing.JLabel TitreRechercheRef;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

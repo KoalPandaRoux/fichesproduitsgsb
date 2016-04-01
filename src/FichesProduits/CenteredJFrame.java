@@ -13,6 +13,10 @@ import javax.swing.JFrame;
  *
  * @author Louis
  */
+
+
+// Cette classe va nous permettre de centrer toutes les fênetres de l'application au centre des pc
+// Elle hérite de JFrame
 public class CenteredJFrame extends JFrame{
 
     public void center() {

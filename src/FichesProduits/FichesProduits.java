@@ -11,6 +11,11 @@ import FichesProduits.Modele;
  */
 public class FichesProduits {
 
+    public void test() {
+        Modele m = Modele.getInstance();
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
